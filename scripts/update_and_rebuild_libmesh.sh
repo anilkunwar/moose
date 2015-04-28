@@ -1,36 +1,35 @@
 #!/bin/bash
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-export LIBMESH_DIR=$SCRIPT_DIR/../libmesh
-#if [ ! -z "$LIBMESH_DIR" ]; then
-#  echo "INFO: LIBMESH_DIR set - overriding default installed path"
-#  echo "INFO: No cleaning will be done in specified path"
-#  mkdir -p $LIBMESH_DIR
-#else
-#  export LIBMESH_DIR=$SCRIPT_DIR/../libmesh/installed
-#  cd $SCRIPT_DIR/../libmesh
-#  rm -rf installed
-#  cd - >/dev/null # Make this quiet
-#fi
+if [ ! -z "$LIBMESH_DIR" ]; then
+  echo "INFO: LIBMESH_DIR set - overriding default installed path"
+  echo "INFO: No cleaning will be done in specified path"
+  mkdir -p $LIBMESH_DIR
+else
+  export LIBMESH_DIR=$SCRIPT_DIR/../libmesh/installed
+  cd $SCRIPT_DIR/../libmesh
+  rm -rf installed
+  cd - >/dev/null # Make this quiet
+fi
 
 export METHODS=${METHODS:="opt oprof dbg"}
 
-#cd $SCRIPT_DIR/..
+cd $SCRIPT_DIR/..
 
-# Test for git repository
-#git_dir=`git rev-parse --show-cdup 2>/dev/null`
-#if [[ $? == 0 && "x$git_dir" == "x" ]]; then
-#  git submodule init
-#  git submodule update
-#  if [[ $? != 0 ]]; then
-#    echo "git submodule command failed, are your proxy settings correct?"
-#    exit 1
-#  fi
-#fi
+ Test for git repository
+git_dir=`git rev-parse --show-cdup 2>/dev/null`
+if [[ $? == 0 && "x$git_dir" == "x" ]]; then
+  git submodule init
+  git submodule update
+  if [[ $? != 0 ]]; then
+    echo "git submodule command failed, are your proxy settings correct?"
+    exit 1
+  fi
+fi
 
 cd $SCRIPT_DIR/../libmesh
 
-#rm -rf build
+rm -rf build
 mkdir build
 cd build
 
