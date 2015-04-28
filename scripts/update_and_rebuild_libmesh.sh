@@ -41,7 +41,6 @@ cd build
              --disable-warnings \
              --disable-cxx11 \
              --enable-petsc --with-petsc=$PETSC_DIR \
-             --disable-mpi \
              --enable-openmp $*
 
 # let LIBMESH_JOBS be either MOOSE_JOBS, or 1 if MOOSE_JOBS
