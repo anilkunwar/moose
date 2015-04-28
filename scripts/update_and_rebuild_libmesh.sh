@@ -40,6 +40,7 @@ cd build
              --enable-unique-id \
              --disable-warnings \
              --disable-cxx11 \
+             --enable-petsc --with-petsc=$PETSC_DIR \
              --disable-mpi \
              --enable-openmp $*
 
